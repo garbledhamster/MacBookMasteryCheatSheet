@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>MacBook Pro Mastery</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/lucide-static@0.343.0/font/lucide.css" rel="stylesheet">
+<style>
+:root{--radius:14px;--transition:.4s cubic-bezier(.4,.2,.2,1)}
+:root[data-theme='dark']{--bg:#0e0f11;--surface:#181a1d;--text:#e9ecf1;--text-muted:#b4b8bf;--accent:#5b8cff;--accent-lite:rgba(91,140,255,.15)}
+:root[data-theme='light']{--bg:#fff;--surface:#f5f6f8;--text:#20242b;--text-muted:#55606d;--accent:#3a6cf4;--accent-lite:rgba(58,108,244,.15)}
+*,*:before,*:after{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%;width:100%;font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);scroll-behavior:smooth;transition:background .3s,color .3s;line-height:1.7}
+header{position:sticky;top:0;z-index:20;background:rgba(0,0,0,.4);backdrop-filter:blur(10px)}
+nav{max-width:1100px;margin:0 auto;padding:1rem clamp(16px,4vw,32px);display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between}
+nav a.logo{font-weight:700;font-size:1.1rem;text-decoration:none;color:var(--text)}
+ul.nav-links{list-style:none;display:flex;gap:1.5rem;flex:1 1 auto;justify-content:center}
+ul.nav-links a{font-weight:600;color:var(--text);text-decoration:none;position:relative}
+ul.nav-links a:after{content:"";position:absolute;left:0;bottom:-3px;width:0;height:2px;background:var(--accent);transition:width var(--transition)}
+ul.nav-links a:hover:after,ul.nav-links a:focus:after{width:100%}
+.controls{display:flex;gap:.75rem}
+button,select{appearance:none;border:none;cursor:pointer;background:var(--surface);color:var(--text);padding:.45rem .9rem;border-radius:8px;font-weight:600;font-size:.85rem;transition:background var(--transition)}
+button:hover,select:hover{background:var(--accent-lite)}
+select{min-width:115px}
+main{max-width:1100px;margin:0 auto;padding:clamp(32px,6vw,72px) clamp(16px,4vw,32px)}
+.hero{display:grid;gap:2rem;align-items:center}
+@media(min-width:800px){.hero{grid-template-columns:1fr 1fr}}
+.hero h1{font-size:clamp(2.2rem,4vw+1rem,3.5rem);line-height:1.1;margin-bottom:1rem}
+.hero p{max-width:46ch;font-size:1.1rem;color:var(--text-muted)}
+.hero img{width:100%;border-radius:var(--radius);box-shadow:0 6px 32px rgba(0,0,0,.45);margin:clamp(24px,6vw,48px)}
+.cta-group{display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem}
+a.cta-btn{background:var(--accent);color:#fff;font-weight:600;padding:.65rem 1.4rem;border-radius:8px;text-decoration:none;transition:background var(--transition)}
+a.cta-btn:hover,a.cta-btn:focus{background:var(--text);color:var(--bg)}
+section{margin-top:clamp(64px,12vw,120px)}
+section h2{font-size:1.9rem;margin-bottom:1.5rem}
+h2 .why{font-size:.9rem;font-weight:400;color:var(--text-muted);display:block;margin-top:.4rem}
+.cards{display:grid;gap:clamp(20px,4vw,36px)}
+@media(min-width:600px){.cards{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}}
+.card{background:var(--surface);border-radius:var(--radius);padding:1.75rem 1.6rem;box-shadow:0 4px 18px rgba(0,0,0,.35);transition:transform var(--transition),box-shadow var(--transition)}
+.card:hover,.card:focus-within{transform:translateY(-6px);box-shadow:0 8px 28px rgba(0,0,0,.45)}
+.card i{font-size:1.6rem;color:var(--accent);display:block;margin-bottom:.8rem}
+.card h3{font-size:1.25rem;margin-bottom:.5rem}
+.card p,.card ul{font-size:.95rem;color:var(--text-muted)}
+.card ul{list-style:disc;padding-left:1.2rem;display:grid;gap:.35rem}
+details{background:var(--surface);border-radius:var(--radius);padding:1.35rem 1.6rem;margin-bottom:1rem;box-shadow:0 3px 12px rgba(0,0,0,.2);transition:background var(--transition)}
+details summary{list-style:none;cursor:pointer;font-weight:600;display:flex;align-items:center;gap:.55rem}
+details summary::-webkit-details-marker{display:none}
+details summary i{transition:transform var(--transition)}
+details[open] summary i{transform:rotate(90deg)}
+details p,details ul{margin-top:1rem;color:var(--text-muted)}
+ul.clean{list-style:disc;padding-left:1.2rem;display:grid;gap:.35rem}
+li{line-height:1.7}
+.goal{font-style:italic;margin-top:.4rem;color:var(--text-muted)}
+.kbd,code{font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;background:rgba(255,255,255,.07);padding:2px 6px;border-radius:4px;font-size:.9em}
+table.ref{width:100%;border-collapse:collapse;margin-top:1.2rem}
+table.ref th,table.ref td{border-bottom:1px solid rgba(255,255,255,.08);padding:.6rem;font-size:.95rem;text-align:left}
+footer{text-align:center;font-size:.85rem;opacity:.6;margin-top:96px;padding-bottom:48px}
+.reveal{opacity:0;transform:translateY(40px)}
+.visible{opacity:1;transform:none}
+.toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:var(--surface);color:var(--text);padding:.75rem 1.2rem;border-radius:8px;box-shadow:0 4px 14px rgba(0,0,0,.3);opacity:0;pointer-events:none;transition:opacity .3s var(--transition);z-index:30}
+.toast.show{opacity:1}
+</style>
+</head>
+<body>
+<header>
+<nav>
+<a class="logo" href="#">MacBook Pro Mastery</a>
+<ul class="nav-links">
+<li><a href="#agenda">Roadmap</a></li>
+<li><a href="#shortcuts">Shortcuts</a></li>
+<li><a href="#gestures">Gestures</a></li>
+<li><a href="#finder">Finder</a></li>
+<li><a href="#icloud">iCloud</a></li>
+<li><a href="#reference">Quick-Ref</a></li>
+</ul>
+<div class="controls">
+<button id="themeBtn"><i class="lucide lucide-sun"></i></button>
+<select id="versionSelect">
+<option value="sequoia" selected>Sequoia 15</option>
+<option value="sonoma">Sonoma 14</option>
+<option value="ventura">Ventura 13</option>
+</select>
+<button id="collapseBtn">Collapse All</button>
+</div>
+</nav>
+</header>
+<main>
+<section class="hero">
+<div>
+<h1 class="reveal">From Windows User<br>to Mac Power-User</h1>
+<p class="reveal" style="transition-delay:.08s">Follow this bite-sized roadmap and you’ll work 30 % faster in macOS—no fluff, just moves that stick.</p>
+<div class="cta-group reveal" style="transition-delay:.1s">
+<a href="https://www.upwork.com/freelancers/~016021fb4f5ed4ff13?mp_source=share" target="_blank" rel="noopener noreferrer" class="cta-btn">Hire me on Upwork</a>
+<a href="https://buymeacoffee.com/garbledhamster" target="_blank" rel="noopener noreferrer" class="cta-btn">Buy Me a Coffee</a>
+</div>
+</div>
+<img class="reveal" style="transition-delay:.15s" src="https://cdn.pixabay.com/photo/2020/06/26/12/21/macbook-pro-5342546_1280.png" alt="Front-facing MacBook Pro">
+</section>
+<section id="agenda">
+<h2 class="reveal">Learning Roadmap <span class="why">Master one cluster, then move on.</span></h2>
+<div class="cards">
+<div class="card reveal"><i class="lucide lucide-keyboard"></i><h3>Launch</h3><p>Key combos that open apps faster than any click.</p></div>
+<div class="card reveal" style="transition-delay:.05s"><i class="lucide lucide-touchpad"></i><h3>Navigate</h3><p>Multi-touch sweeps that glide across desktops.</p></div>
+<div class="card reveal" style="transition-delay:.1s"><i class="lucide lucide-camera"></i><h3>Capture</h3><p>Instant screenshots and recordings.</p></div>
+<div class="card reveal" style="transition-delay:.15s"><i class="lucide lucide-lock"></i><h3>Secure</h3><p>Lock screens and passwords in one press.</p></div>
+<div class="card reveal" style="transition-delay:.2s"><i class="lucide lucide-folders"></i><h3>Organize</h3><p>Finder, tags, and iCloud hygiene.</p></div>
+</div>
+</section>
+<section id="shortcuts">
+<h2 class="reveal">Keyboard Shortcuts <span class="why">Save 1 000+ clicks a day.</span></h2>
+<details class="reveal" open>
+<summary><i class="lucide lucide-chevron-right"></i>Launch & Switch</summary>
+<ul class="clean">
+<li><strong><code>⌘ Space</code></strong> → type “Safari” → <code>Return</code>. <span class="goal">Goal: open any app &lt; 2 s.</span></li>
+<li><strong><code>⌘ Tab</code></strong> → cycle running apps.</li>
+<li><strong><code>⌘ </code></strong> → cycle windows in current app.</li>
+<li><strong><code>⌘ H</code></strong> → hide current app.</li>
+<li><strong><code>⌃⌘ Q</code></strong> → lock screen.</li>
+</ul>
+</details>
+<details class="reveal" data-version="sequoia sonoma ventura" open>
+<summary><i class="lucide lucide-chevron-right"></i>Window & Desktop Control</summary>
+<ul class="clean">
+<li><strong><code>⌃ ↑</code></strong> → Mission Control overview.</li>
+<li><strong><code>⌃ ↓</code></strong> → App Exposé.</li>
+<li><strong><code>F11</code></strong> → Show Desktop.</li>
+<li>Hover green button → “Tile Left/Right”.</li>
+</ul>
+</details>
+<details class="reveal" data-version="sequoia sonoma ventura" open>
+<summary><i class="lucide lucide-chevron-right"></i>Stage Manager (Ventura+)</summary>
+<p>Toggle in Control Center, then <code>⌃ ←</code>/<code>⌃ →</code> to hop stacks.</p>
+</details>
+<details class="reveal" data-version="sequoia" open>
+<summary><i class="lucide lucide-chevron-right"></i>Presenter Preview (Sequoia 15)</summary>
+<p>Keynote → “Presenter Preview” mirrors audience view.</p>
+</details>
+<details class="reveal" open>
+<summary><i class="lucide lucide-zap"></i>Pro Moves</summary>
+<ul class="clean">
+<li><strong><code>Space</code></strong> → Quick Look; press <code>⌘ Y</code> to full-screen.</li>
+<li><strong><code>⌃⌘ Space</code></strong> → Emoji & Symbols palette.</li>
+<li><strong><code>⌥⇧ Volume ▲/▼</code></strong> → fine-step volume.</li>
+<li><strong><code>⌘ ⌥ Esc</code></strong> → Force-Quit window.</li>
+<li><strong><code>⌘ 1/2/3</code></strong> inside iPhone Mirroring (Sequoia).</li>
+</ul>
+</details>
+</section>
+<section id="gestures">
+<h2 class="reveal">Trackpad Gestures <span class="why">Navigate three times faster.</span></h2>
+<div class="cards">
+<div class="card reveal"><i class="lucide lucide-click-right"></i><h3>Tap</h3><p>Two-finger tap → right-click menu.</p></div>
+<div class="card reveal" style="transition-delay:.05s"><i class="lucide lucide-swipe-up"></i><h3>Swipe</h3><p>Three-finger swipe ↑ → Mission Control.</p></div>
+<div class="card reveal" style="transition-delay:.1s"><i class="lucide lucide-swipe-right"></i><h3>Edge Pull</h3><p>Swipe from right edge → Notification Center.</p></div>
+<div class="card reveal" style="transition-delay:.15s"><i class="lucide lucide-touchpad-off"></i><h3>Spread &amp; Pinch</h3><ul class="clean"><li>Spread thumb + three fingers → Show Desktop.</li><li>Pinch thumb + three fingers → Launchpad.</li><li>Spread four fingers → Show Desktop (if enabled).</li><li>Pinch four fingers → Launchpad (legacy option).</li></ul></div>
+<div class="card reveal" style="transition-delay:.2s" data-version="sequoia"><i class="lucide lucide-phone"></i><h3>Mirror</h3><p>Control Center → “iPhone Mirroring”.</p></div>
+<div class="card reveal" style="transition-delay:.25s"><i class="lucide lucide-hand"></i><h3>Advanced Gestures</h3><ul class="clean"><li>Rotate with two fingers → rotate images/PDFs.</li><li>Double-tap with two fingers → smart-zoom.</li><li>Assign corner swipes in Settings for Sleep or Launchpad.</li></ul></div>
+</div>
+</section>
+<section id="finder">
+<h2 class="reveal">Finder Workflow <span class="why">Minutes now, hours saved later.</span></h2>
+<details class="reveal" open><summary><i class="lucide lucide-chevron-right"></i>Sidebar Hygiene</summary><p>Finder → Settings <code>⌘ ,</code> → untick unused drives.</p></details>
+<details class="reveal" open><summary><i class="lucide lucide-chevron-right"></i>Tags & Smart Folders</summary><p>Tag file “Action” → File → New Smart Folder → Tag is Action.</p></details>
+<details class="reveal" open><summary><i class="lucide lucide-chevron-right"></i>Quick Actions</summary><p>Select image → Rotate Left or combine PDFs instantly.</p></details>
+<details class="reveal" open><summary><i class="lucide lucide-pencil"></i>Batch Rename</summary><p>Select group → right-click → Rename to add counters or dates.</p></details>
+<details class="reveal" open><summary><i class="lucide lucide-eye"></i>Quick Look + Mark-up</summary><p>Press <code>Space</code>, then click the ✏️ to sign PDFs or crop images.</p></details>
+<details class="reveal" open><summary><i class="lucide lucide-layout"></i>Column View + Preview</summary><p>Toggle <code>⌘⌥ P</code> to show metadata while arrow-keying files.</p></details>
+<details class="reveal" open><summary><i class="lucide lucide-airplay"></i>AirDrop Drag</summary><p>Drag files to another Mac/iPhone in sidebar—no cables.</p></details>
+</section>
+<section id="icloud">
+<h2 class="reveal">iCloud Moves <span class="why">Stay synced, keep storage lean.</span></h2>
+<details class="reveal" open><summary><i class="lucide lucide-chevron-right"></i>Manage & Optimize</summary><ul class="clean"><li>System Settings → iCloud → Manage Storage.</li><li>Delete retired backups, enable “Optimize Mac Storage”.</li></ul></details>
+<details class="reveal" open><summary><i class="lucide lucide-chevron-right"></i>File Size Audit</summary><ul class="clean"><li><code>⌘⇧ I</code> → iCloud Drive, <code>⌘ 2</code> list view, sort by Size.</li></ul></details>
+<details class="reveal" open><summary><i class="lucide lucide-chevron-right"></i>Shared Albums</summary><ul class="clean"><li>Photos → Settings → Shared Library → invite.</li></ul></details>
+<details class="reveal" open><summary><i class="lucide lucide-key"></i>Keychain Audit</summary><p>Settings → Passwords → Security Recommendations.</p></details>
+<details class="reveal" open><summary><i class="lucide lucide-mail"></i>Hide My Email</summary><p>In Mail, choose “Hide My Email” in the From field for a burner address.</p></details>
+<details class="reveal" open><summary><i class="lucide lucide-domain"></i>Custom Email Domains</summary><p>iCloud.com → Custom Email Domain → follow DNS prompts.</p></details>
+<details class="reveal" open><summary><i class="lucide lucide-users"></i>Family Sharing Storage</summary><p>Upgrade to 200 GB and share space with family for less.</p></details>
+<details class="reveal" open><summary><i class="lucide lucide-message-circle"></i>Messages in iCloud</summary><p>Toggle Messages under iCloud so old attachments sync (then delete to free space).</p></details>
+</section>
+<section id="reference">
+<h2 class="reveal">Quick-Ref Table</h2>
+<table class="ref">
+<thead><tr><th>Shortcut</th><th>Action</th></tr></thead>
+<tbody>
+<tr><td><code>⌘ Space</code></td><td>Spotlight search</td></tr>
+<tr><td><code>⌘ Tab</code></td><td>App Switcher</td></tr>
+<tr><td><code>⌃ ↑</code></td><td>Mission Control</td></tr>
+<tr><td><code>⌃⌘ Q</code></td><td>Lock Screen</td></tr>
+<tr><td><code>Shift ⌘ 4</code></td><td>Screenshot selection</td></tr>
+<tr><td><code>⌘ ,</code></td><td>Open Settings</td></tr>
+<tr><td><code>Shift ⌘ 5</code></td><td>Screenshot & screen-record bar</td></tr>
+<tr><td><code>⌥ Brightness ▲/▼</code></td><td>Fine-tune brightness</td></tr>
+<tr><td><code>⌃⌥⌘ Power</code></td><td>Force-restart Mac</td></tr>
+<tr><td><code>Fn Q</code></td><td>Quick Note overlay</td></tr>
+<tr><td><code>⌘ Shift .</code></td><td>Toggle hidden files</td></tr>
+<tr><td><code>⌥ Click menu-bar icon</code></td><td>Advanced pane</td></tr>
+<tr><td><code>⌥ Drag file</code></td><td>Duplicate instead of move</td></tr>
+</tbody>
+</table>
+</section>
+</main>
+<footer>© 2025 MacBook Pro Mastery · Built by Joe Rice</footer>
+<div class="toast" id="toast"></div>
+<script>
+const reveals=[...document.querySelectorAll('.reveal')];
+function show(el){el.classList.add('visible')}
+if('IntersectionObserver'in window){
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){show(e.target);io.unobserve(e.target)}})},{threshold:.1});
+reveals.forEach(el=>io.observe(el))}else{reveals.forEach(show)}
+document.querySelectorAll('details').forEach(d=>d.open=true)
+const root=document.documentElement;const themeBtn=document.getElementById('themeBtn');
+function setTheme(m){root.setAttribute('data-theme',m);themeBtn.innerHTML=m==='light'?'<i class="lucide lucide-moon"></i>':'<i class="lucide lucide-sun"></i>';localStorage.setItem('mbp-theme',m)}
+setTheme(localStorage.getItem('mbp-theme')||'dark');
+themeBtn.addEventListener('click',()=>setTheme(root.getAttribute('data-theme')==='dark'?'light':'dark'));
+const collapseBtn=document.getElementById('collapseBtn');let collapsed=false;
+collapseBtn.addEventListener('click',()=>{document.querySelectorAll('details').forEach(d=>d.open=collapsed);collapsed=!collapsed;collapseBtn.textContent=collapsed?'Expand All':'Collapse All'});
+const versionSelect=document.getElementById('versionSelect');
+function filterVer(v){document.querySelectorAll('[data-version]').forEach(el=>{el.style.display=el.getAttribute('data-version').split(' ').includes(v)?'':'none'})}
+const saved=localStorage.getItem('mbp-version')||'sequoia';versionSelect.value=saved;filterVer(saved);
+versionSelect.addEventListener('change',e=>{filterVer(e.target.value);localStorage.setItem('mbp-version',e.target.value)});
+const toast=document.getElementById('toast');
+function flash(msg){toast.textContent=msg;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),4000)}
+document.querySelectorAll('.cta-btn').forEach(btn=>{btn.addEventListener('click',()=>flash('Opening in a new tab — thanks for the support!'))})
+toast.addEventListener('click',()=>toast.classList.remove('show'))
+</script>
+</body>
+</html>
